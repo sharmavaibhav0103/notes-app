@@ -19,7 +19,7 @@ form.addEventListener('submit', function(e){
     })
     .then(response => response.json())
     .then(({ errors, token, user }) => {
-        if(errors) return window.alert(errors);
+        if(errors) return window.alert(errors[0].msg);
         //Sending the token to localStorage
         else{
         localStorage.setItem('token', token);

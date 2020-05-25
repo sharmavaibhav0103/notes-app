@@ -13,7 +13,8 @@ router.post('/login',
         //Validating the user
         const errors = validationResult(req);
         if(!errors.isEmpty()){
-            return res.status(400).json({ errors: errors.array() });
+            console.log(errors);
+            return res.status(500).json({ errors: errors.array() });
         }
 
         //Checking the credentials in the database

@@ -13,10 +13,10 @@ router.post('/login',
             console.log(req.body);
             //Retrieve the user
             const user = await User.findOne({ email: req.body.email });
-            if(!user) return res.status(401).json({ errors: 'User doesn\'t exist' });
+            if(!user) res.status(401).json({ errors: 'User doesn\'t exist' });
 
             const isMatch = await bcrypt.compare(password, user.password);
-            if(!isMatch) return res.status(401).json({ errors: 'Incorrect Password'});
+            if(!isMatch) res.status(401).json({ errors: 'Incorrect Password'});
 
             //Creating the JWT Token
             const payload = {

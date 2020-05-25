@@ -3,20 +3,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const router = require('express').Router();
-const {check, validationResult} = require('express-validator');
 
 router.post('/login',
-    [
-        check('email','Email is required!').isEmail()
-    ],
      async(req, res) => {
-        //Validating the user
-        const errors = validationResult(req);
-        if(!errors.isEmpty()){
-            console.log(errors);
-            return res.status(500).json({ errors: errors.array() });
-        }
-
         //Checking the credentials in the database
         try {
             const {email, password} = req.body;

@@ -1,0 +1,52 @@
+const config = require('config');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const User = require('../models/user');
+const router = require('express').Router();
+const {check, validationResult} = require('express-validator');
+
+router.post('/login',
+    [
+        check('email','Email is required!').isEmail()
+    ],
+     async(req, res) => {
+        //Validating the user
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        //Checking the credentials in the database
+        try {
+            const {email, password} = req.body;
+        
+            //Retrieve the user
+            const user = await User.findOne({ email });
+            if(!user) return res.status(401).json({ errors: 'User doesn\'t exist' });
+
+            const isMatch = await bcrypt.compare(password, user.password);
+            if(!isMatch) return res.status(401).json({ errors: 'Incorrect Password'});
+
+            //Creating the JWT Token
+            const payload = {
+                user: {
+                    id: user.id
+                }
+            };
+             jwt.sign(
+                payload, 
+                config.get('jwtSecret'),
+                { expiresIn: 360000000000 },
+                async (err, token) => {
+                    //Inserting the token
+                    user.tokens = user.tokens.concat({ token });
+                    await user.save();
+                    res.status(200).json({ user,token:user.tokens[0].token });
+                });
+        }
+        catch(err) {
+            res.status(500).send(err.message);
+        }
+})
+
+module.exports = router;

@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="https://img.icons8.com/cute-clipart/64/000000/edit.png" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Poppins:ital@1&display=swap" rel="stylesheet">
+    <title>Register/Login</title>
+<style>
+	*{
+			padding:0;
+			margin: 0;
+		}
+
+		body{
+			 background-color: #0E0809;
+		}
+
+		#section1{
+			margin-top: 70px;
+			display: grid;
+			grid-template-columns: repeat(1,350px);
+			justify-content: center;
+		}
+
+		h1{
+			text-align: center;
+			margin-bottom: 30px;
+			font-size: 30px;
+			color: #E18C3F;
+			
+		}
+		 
+		#form{
+
+			display: grid;
+			grid-template-columns: repeat(1,100%);
+		}
+
+		div{
+			display: grid;
+			grid-template-columns: repeat(1,100%);
+			margin-bottom: 20px;
+
+		}
+
+		input{
+			padding: 10px;
+			border: none;
+			box-sizing: border-box;
+			font-size: 20px;
+
+		}
+
+		input[type=submit]{
+			background-color: #E18C3F;
+			font-size: 20px;
+		}
+
+		label{
+			margin-bottom: 3px;
+			font-size: 20px;
+			color: #E18C3F;
+		}
+
+		a{
+			font-size: 20px;
+			color: white;
+		}
+
+		p{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+    <section id="section1">
+        <h1>Register</h1>
+        <div id="form-container">
+            <form action="" id="register-form">
+                <label for="username">Username</label>
+                 <div>
+                     <input type="text" name="username" autocomplete="off" placeholder="Username">
+                 </div>
+                 <label for="email">E-mail</label>
+                 <div>  
+                     <input type="text" autocomplete="off" name="email" placeholder="E-mail">
+                 </div>
+                 <label for="password">Password</label>
+                 <div>
+                    <input type="password" autocomplete="off" name="password" placeholder="Password">
+                 </div>
+                 <div>
+                     <input type="submit" value="Sign in">
+                 </div>
+            </form>
+        </div>
+     <p><a href="/login.html">Login</a></p>  
+    </section>
+    <script src="./index.js"></script>
+</body>
+</html>

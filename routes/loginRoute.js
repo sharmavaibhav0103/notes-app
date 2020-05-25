@@ -9,7 +9,8 @@ router.post('/login',
         //Checking the credentials in the database
         try {
             const {email, password} = req.body;
-        
+            
+            console.log(req.body);
             //Retrieve the user
             const user = await User.findOne({ email });
             if(!user) return res.status(401).json({ errors: 'User doesn\'t exist' });
